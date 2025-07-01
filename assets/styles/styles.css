@@ -39,6 +39,10 @@ body {
   display: flex;
   align-items: center;
   column-gap: 1rem;
+
+  img:hover {
+    cursor: pointer;
+  }
 }
 
 .menu__search-container {
@@ -63,7 +67,7 @@ body {
   align-items: center;
   column-gap: 0.7rem;
 
-  button:hover {
+  img:hover {
     cursor: pointer;
   }
 }
@@ -113,7 +117,16 @@ body {
   column-gap: 1rem;
   align-items: center;
 
-  h2,
+  a {
+    font-weight: 600;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  a,
   p {
     font-size: 0.9rem;
   }
@@ -121,6 +134,10 @@ body {
   img {
     width: 3rem;
     height: 3rem;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .profile__detail p {
@@ -188,6 +205,78 @@ aside {
   row-gap: 0.5rem;
   margin-top: 2rem;
 
+  .aside__thumbnail-wrapper {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: "►";
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 1.5rem;
+      display: none;
+      z-index: 11;
+      visibility: hidden;
+      transition: visibility 0.5s;
+    }
+
+    /* background */
+    &::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: #000;
+      opacity: 0.3;
+      z-index: 10;
+      display: none;
+      visibility: hidden;
+      transition: visibility 0.5s;
+    }
+
+    &:hover::after,
+    &:hover::before {
+      display: block;
+      visibility: visible;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  img {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+    &:hover {
+      cursor: pointer;
+
+      &::before {
+        position: absolute;
+        content: "►";
+        color: #ffffff;
+        top: 0;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-color);
+    }
+  }
+
   .aside-video__container__texts {
     display: flex;
     flex-direction: column;
@@ -195,11 +284,20 @@ aside {
 
     h2 {
       font-size: 0.9rem;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
     }
 
     a {
       text-decoration: none;
       color: var(--secondary-text);
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     .details {
@@ -211,9 +309,23 @@ aside {
 }
 
 footer {
+  margin-top: 2rem;
   width: 100%;
   text-align: center;
   padding: 1rem;
+  border-top: 1px solid #000;
+
+  a {
+    color: var(--primary-text);
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s;
+
+    &:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -246,5 +358,113 @@ footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 1rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .menu {
+    padding: 1rem 2rem;
+  }
+
+  .menu__logo-section {
+    column-gap: 2rem;
+  }
+
+  .menu__search-container {
+    .search-input {
+      width: 15rem;
+    }
+  }
+
+  .menu__profile-container {
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
+  }
+
+  main {
+    display: flex;
+    column-gap: 1.5rem;
+    padding: 2rem;
+  }
+
+  .main-video {
+    padding: 0;
+    flex: 5;
+    row-gap: 1rem;
+  }
+
+  .video-wrapper:has(.iframe-mobile) {
+    display: none;
+  }
+
+  .video-wrapper:has(.iframe-desktop) {
+    display: block;
+  }
+
+  .main__video__options {
+    flex-direction: row;
+    column-gap: 2rem;
+    width: 100%;
+  }
+
+  .video__profile {
+    flex: 1;
+  }
+
+  .video__buttons-interaction {
+    justify-content: space-between;
+    width: 100%;
+    flex: 1;
+
+    button {
+      column-gap: 0.5rem;
+      padding: 0 0.5rem;
+      transition: 0.3s;
+      border-radius: 10px;
+
+      &:hover {
+        background: #e5e5e5;
+      }
+    }
+  }
+
+  .main__video__description {
+    width: 70%;
+  }
+
+  .main__video__text-infos {
+    column-gap: 1rem;
+  }
+
+  aside {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    padding: 0;
+    flex: 2;
+  }
+
+  .aside-video__container {
+    flex-direction: row;
+    column-gap: 1rem;
+    margin-top: 0;
+
+    .img {
+      flex: 1;
+    }
+
+    .aside-video__container__texts {
+      justify-content: space-between;
+      flex: 1;
+
+      .details {
+        flex-direction: column;
+      }
+    }
+  }
+
+  .aside-video__container__texts {
+    padding: 0.3rem 0;
   }
 }
